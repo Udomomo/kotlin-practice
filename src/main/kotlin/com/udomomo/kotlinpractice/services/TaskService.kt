@@ -29,4 +29,16 @@ class TaskService(taskRepository: TaskRepository) {
 
     return V1ResponseTask(taskResult.id, taskResult.contents, taskResult.isDone)
   }
+
+  fun list(): List<V1ResponseTask> {
+    val taskResults = taskRepository.findAll()
+    val v1ResponseTasks = mutableListOf<V1ResponseTask>()
+    for (taskResult in taskResults) {
+      if (taskResult.id == null) {
+        throw RuntimeException("Failed to list tasks")
+      }
+      v1ResponseTasks.add(V1ResponseTask(taskResult.id, taskResult.contents, taskResult.isDone))
+    }
+    return v1ResponseTasks
+  }
 }

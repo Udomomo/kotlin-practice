@@ -1,7 +1,0 @@
-USE taskapp;
-DROP TABLE task IF EXISTS;
-CREATE TABLE task(
-    id MEDIUMINT UNSIGNED NOT NULL PRIMARY KEY,
-    contents VARCHAR(30) NOT NULL,
-    is_done TINYINT(1)
-);
